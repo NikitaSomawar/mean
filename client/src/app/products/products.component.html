@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-6" style="margin-bottom: 20px;" > 
+        <div>
+            
+            <select name="show-filter"  [(ngModel)]="catFilter" #cat="ngModel" ng-init="value=''">
+                <option value="">Choose</option>
+                <option value="electrical">Electrical</option>
+                <option value="furniture">Furniture</option>
+            </select>
+        </div>
+      </div>
+    </div>
+    <!--{{arr | catfilter:'desc'}}-->
+    <div class="row">
+      <div style="margin-bottom: 20px;" class="col-sm-4" *ngFor="let product of products.result | catfilter:cat.value">
+         <div style="border:1px solid black;text-align:center">
+           <h4>{{product.product_name}}</h4>
+              <h6>{{product.product_cost}} Rs/- only</h6>
+              <button (click)="addtocart(product.product_id)" class='btn btn-primary'>Add to cart</button>
+              <!--onclick="this.disabled=true"-->
+         </div>
+      </div>
+    </div>
+</div>
+    

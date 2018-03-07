@@ -1,0 +1,88 @@
+
+
+<!---
+<div class='row'>
+    <div class="col-md-offset-3 col-md-6">
+        <button (click)="showproducts()">Show Products</button>
+    </div>
+</div>
+-->
+    <div class='row'>
+        <div class="col-md-offset-3 col-md-6">
+                <form (submit)="addcontact()">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type='text' class="form-control" [(ngModel)]="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Contact:</label>
+                            <input type='text' class="form-control" [(ngModel)]="contact" name="contactphone">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value='Add'>
+                        </div>
+                </form>
+        </div>
+    </div>
+
+
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contact of contacts.result">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.contact}}</td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="updatecontact(contact)">Update</button></td>
+                    <td><button class="btn btn-primary" (click)="deleterecord(contact.id)" >delete</button></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<p>{{added_status}}</p>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="updatecontactdata()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control"[(ngModel)]="editname" name="editname" >
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Contact:</label>
+            <input class="form-control" id="editcontact" [(ngModel)]="editcontact" name="editcontact">
+          </div>
+          <input type="hidden" class="form-control" id="editid" [(ngModel)]="editid" name="editid">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary">
+          </div>
+          <p style="color:green">{{update_status}}</p>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>

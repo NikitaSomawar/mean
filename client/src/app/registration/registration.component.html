@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-6">
+      <div style="allign:center">Registration Form</div>
+    </div>
+    <div class='row'>
+        <div class="col-md-offset-3 col-md-6">
+                <form (submit)="register()" #registrationform = "ngForm">
+                        <div class="form-group">
+                            <label for="name">Username:</label>
+                            <input type='text' class="form-control" [(ngModel)]="username" #name="ngModel"  name="username" required pattern="[a-zA-Z a-zA-Z]+">
+                              <div *ngIf="name.touched">
+                                  <div class="alert alert-danger" *ngIf="name.errors?.required">Username id required!</div>
+                                  <div class="alert alert-danger" *ngIf="name.errors?.pattern">Enter only alphabates</div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="contact">Contact:</label>
+                              <input type='text' class="form-control" [(ngModel)]="contact" #mobile="ngModel"  name="contact" required>
+                                <div *ngIf="mobile.touched" >
+                                    <div class="alert alert-danger" *ngIf="mobile.errors?.required">phone id required!</div>
+                                    <!--<div *ngIf="mobile.errors?.phone">Enter only phone number</div>-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emai">Email:</label>
+                                <input type='email' class="form-control" [(ngModel)]="email" #emailid="ngModel" name="email" required email>
+                                <div *ngIf="emailid.touched" >
+                                      <div class="alert alert-danger" *ngIf="emailid.errors?.required">email id required!</div>
+                                      <p class="alert alert-danger"  *ngIf="emailid.errors?.email">error message</p>
+                                  </div>
+                            </div>
+
+
+
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type='password' class="form-control" [(ngModel)]="password" #pwd="ngModel" name="password" required>
+                            <div *ngIf="pwd.touched" >
+                                  <div class="alert alert-danger" *ngIf="pwd.errors?.required">Password id required!</div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm password">Confirm Password:</label>
+                            <input type='password' class="form-control" [(ngModel)]="confirmpassword" #cpwd="ngModel" name="confirmpassword" required [equalTo]="pwd">
+                            <div *ngIf="cpwd.touched" >
+                                <div class="alert alert-danger" *ngIf="cpwd.errors?.required">Password id required!</div>
+                                <div class="alert alert-danger" *ngIf="cpwd.errors?.equalTo">must match to password</div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value='Registration' [disabled]="registrationform.invalid">
+                        </div>
+                </form>
+        </div>
+    </div>
+  </div>
+  

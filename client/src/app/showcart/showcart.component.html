@@ -1,0 +1,39 @@
+<div class="container">
+  <div *ngIf="list.status=='200'; else falsyTemplate">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-6" style="margin-bottom: 20px;" > 
+        <h3>My Cart</h3>
+      </div>
+    </div>
+
+    <!--{{arr | catfilter:'desc'}}-->
+    <div class="row">
+      <div style="margin-bottom: 20px;" class="col-sm-4" *ngFor="let item of list.result">
+         <div style="border:1px solid black;text-align:center">
+           <h4>{{item.product_name}}</h4>
+              <h6>{{item.product_cost}} Rs/- only</h6>
+              <button (click)="removefromcart(item.cart_id)" class='btn btn-danger'>Remove from cart</button>
+              <!--onclick="this.disabled=true"-->
+         </div>
+      </div>
+    </div>
+      <div class="row">
+          <div style="margin-bottom: 20px;" class="col-sm-4 col-md-offset-6" >
+             <button (click)="buyproducts()">Buy</button>
+          </div>
+    </div>
+  </div>
+  <div>
+      <ng-template #falsyTemplate>
+        <div class='row'>
+          <div class='col-md-4 col-md offset-6'>
+            <h4>No Items Yet</h4>
+          </div>
+        </div>
+        </ng-template>
+  </div>
+</div>
+
+
+
+
